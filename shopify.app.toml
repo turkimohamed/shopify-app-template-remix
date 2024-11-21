@@ -1,33 +1,33 @@
-# This file stores configurations for your Shopify app.
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
-scopes = "write_products"
+client_id = "5a2a54214ccdc49f445853b2bde2d697"
+application_url = "https://administrator-procurement-world-talented.trycloudflare.com"
+embedded = true
+name = "satim v3"
+handle = "satim-v3"
+
+[build]
+include_config_on_deploy = true
+dev_store_url = "quickstart-d0ba2c9a.myshopify.com"
+automatically_update_urls_on_dev = true
 
 [webhooks]
-api_version = "2024-07"
+api_version = "2024-10"
 
-  # Handled by: /app/routes/webhooks.app.uninstalled.tsx
   [[webhooks.subscriptions]]
+  topics = [ "app/uninstalled" ]
   uri = "/webhooks/app/uninstalled"
-  topics = ["app/uninstalled"]
 
-  # Webhooks can have filters
-  # Only receive webhooks for product updates with a product price >= 10.00
-  # See: https://shopify.dev/docs/apps/build/webhooks/customize/filters
-  # [[webhooks.subscriptions]]
-  # topics = ["products/update"]
-  # uri = "/webhooks/products/update"
-  # filter = "variants.price:>=10.00"
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products"
 
-  # Mandatory compliance topic for public apps only
-  # See: https://shopify.dev/docs/apps/build/privacy-law-compliance
-  # [[webhooks.subscriptions]]
-  # uri = "/webhooks/customers/data_request"
-  # compliance_topics = ["customers/data_request"]
+[auth]
+redirect_urls = [
+  "https://administrator-procurement-world-talented.trycloudflare.com/auth/callback",
+  "https://administrator-procurement-world-talented.trycloudflare.com/auth/shopify/callback",
+  "https://administrator-procurement-world-talented.trycloudflare.com/api/auth/callback"
+]
 
-  # [[webhooks.subscriptions]]
-  # uri = "/webhooks/customers/redact"
-  # compliance_topics = ["customers/redact"]
-
-  # [[webhooks.subscriptions]]
-  # uri = "/webhooks/shop/redact"
-  # compliance_topics = ["shop/redact"]
+[pos]
+embedded = false
